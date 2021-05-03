@@ -30,14 +30,20 @@ class Gossip
         return all_gossips[g]
     end
 
-    def self.edit(id, author, content)
-        all_gossips = self.all
-        g = id.to_i - 1
+    def self.edit(id, gossip_content)
         
+        n = id.to_i - 1
+        gossips = self.all
+        CSV.open("./db/gossip.csv", "w") do |csv|
+          gossips.each.with_index do |x| 
+            if n == gossips.index(x)
+              csv << [x.author, gossip_content]
+            else
+              csv << [x.author, x.content]
 
-        
-        
-    end    
+            end    
     
+        end
 end
-      
+end
+end

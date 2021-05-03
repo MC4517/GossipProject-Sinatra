@@ -5,7 +5,7 @@ class ApplicationController < Sinatra::Base
     erb :index, locals: {gossips: Gossip.all}
   end 
 
-  get '/gossips/new' do
+  get '/new/gossips' do
       erb :new_gossip
   end
 
@@ -30,7 +30,7 @@ class ApplicationController < Sinatra::Base
     erb :edit , locals: {gossip: Gossip.edit(params['id'], params['gossip_content'])}
   end
 
-  post "/gossips/:id/edit/" do
+  post "/gossips/edit/:id" do
     Gossip.edit(params['id'], params['gossip_content'])
     redirect '/'
 
